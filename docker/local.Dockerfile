@@ -18,7 +18,5 @@ RUN apt-get update && \
 # Setup JAVA_HOME -- useful for docker commandline
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 
-# Get local files and folders
-COPY ./.m2 ./home/cdeleon/.m2
+# Get testing script
 COPY ./testing ./home/cdeleon/FormulaCompressionTesting/testing
-COPY ./dataspread-web ./home/cdeleon/FormulaCompressionTesting/dataspread-web
