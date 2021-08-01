@@ -38,6 +38,6 @@ RUN sudo apt-get update && \
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 
 # Get local files and folders
-COPY ./.m2 ./home/cdeleon/.m2
-COPY ./testing ./home/cdeleon/FormulaCompressionTesting/testing
-COPY ./dataspread-web ./home/cdeleon/FormulaCompressionTesting/dataspread-web
+COPY ./.m2 ./.m2
+COPY ./testing ./FormulaCompressionTesting/testing
+COPY ./dataspread-web ./FormulaCompressionTesting/dataspread-web
