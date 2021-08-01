@@ -8,9 +8,9 @@
 
 cd $(dirname "$0") && \
 if [ "$1" == "RISE" ]; then
-	bash ./scripts/rise/start-db.sh && \
+	bash ./scripts/rise/start-db.sh
 	bash ./scripts/rise/start.sh
 else
-	bash ./scripts/local/start-db.sh && \
+	bash ./scripts/local/start-db.sh
 	bash ./scripts/local/start.sh
 fi
