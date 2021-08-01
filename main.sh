@@ -8,7 +8,7 @@
 
 cd $(dirname "$0") && \
 if [ "$1" == "RISE" ]; then
-	bash ./scripts/local/db.sh # TODO: For some reason ./scripts/rise/start-db.sh doesn't start the container on the RISE machines.
+	bash ./scripts/local/db.sh # TODO: For some reason ./scripts/rise/db.sh doesn't start the container on the RISE machines.
 	bash ./scripts/rise/build.sh && bash ./scripts/rise/run.sh fcomp-rise-container "2"
 else
 	bash ./scripts/local/db.sh
