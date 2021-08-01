@@ -1,6 +1,4 @@
-# FormulaCompressionTesting
-
-# Getting started:
+# Getting Started
 
 - If you're using your local machine, you can automatically set up the testing environment by running:
 	```sh
@@ -29,10 +27,10 @@
 	If you'd like to run the container again use:
 	```sh
 	# For local development
-	$ bash ./scripts/local/run.sh <container-name> <number-of-cpus>
+	$ bash ./scripts/local/run.sh <container-name>
 
 	# For the RISE servers:
-	$ bash ./scripts/rise/run.sh <container-name> <number-of-cpus>
+	$ bash ./scripts/rise/run.sh <container-name>
 	```
 
 - If you're on the RISE servers, you can run:
