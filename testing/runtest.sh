@@ -19,7 +19,7 @@ CLASSPATH=$DATASPREAD_HOME/testcode/target/classes:$MAVEN_HOME/repository/org/ap
 # declare -a runs=("1" "2" "3")
 declare -a depTableClassString=("Async")
 declare -a spreadsheetString=("RunningTotalSlow")
-declare -a rows=("100000")
+declare -a rows=("10")
 declare -a runs=("1")
 
 for run in "${runs[@]}"
