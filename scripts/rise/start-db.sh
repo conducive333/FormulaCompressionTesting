@@ -5,10 +5,10 @@ cd ../../
 uid=$(id -u $(whoami))
 docker build -t dataspread-db -f ./docker/db.Dockerfile . && \
 docker network create dataspread;
-docker run \
+docker run -d \
 	--rm \
 	--net dataspread \
 	--name fcomp-db \
-	--user $uid:$uid
-	-dp 5432:5432 \
+	--user $uid:$uid \
+	-p 5432:5432 \
 	dataspread-db 
