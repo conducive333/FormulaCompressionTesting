@@ -36,6 +36,3 @@ RUN sudo apt-get update && \
 
 # Setup JAVA_HOME -- useful for docker commandline
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
-
-# Get testing script
-COPY ./testing ./FormulaCompressionTesting/testing

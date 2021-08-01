@@ -8,6 +8,7 @@ docker run \
 	--rm \
 	--net dataspread \
 	--name fcomp-container \
-	--mount type=bind,src="$(pwd)"/.m2,dst=/.m2,bind-propagation=shared \
-	--mount type=bind,src="$(pwd)"/dataspread-web,dst=/FormulaCompressionTesting/dataspread-web,bind-propagation=shared \
+	--mount type=bind,src="$(pwd)"/.m2,dst=/.m2 \
+	--mount type=bind,src="$(pwd)"/testing,dst=/FormulaCompressionTesting/testing \
+	--mount type=bind,src="$(pwd)"/dataspread-web,dst=/FormulaCompressionTesting/dataspread-web \
 	-it fcomp
