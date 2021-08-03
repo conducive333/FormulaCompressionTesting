@@ -2,7 +2,7 @@
 
 JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 JAVA_CMD=$JAVA_HOME/bin/java
-JAVA_CONFIG=-Xss1G
+JAVA_CONFIG=-Xss4m
 MAVEN_HOME=/home/cdeleon/.m2
 DATASPREAD_HOME=/home/cdeleon/FormulaCompressionTesting/dataspread-web
 
@@ -17,10 +17,16 @@ CLASSPATH=$DATASPREAD_HOME/testcode/target/classes:$MAVEN_HOME/repository/org/ap
 # declare -a spreadsheetString=("RunningTotalFast" "Rate")
 # declare -a rows=("100000" "200000" "300000" "400000" "500000")
 # declare -a runs=("1" "2" "3")
-declare -a depTableClassString=("Async")
-declare -a spreadsheetString=("RunningTotalSlow")
-declare -a rows=("10")
-declare -a runs=("1")
+
+# declare -a depTableClassString=("PGImpl" "Comp" "Async")
+# declare -a spreadsheetString=("RunningTotalSlow")
+# declare -a rows=("5000" "10000" "15000" "20000" "25000")
+# declare -a runs=("1" "2" "3")
+
+declare -a depTableClassString=("Async" "Comp")
+declare -a spreadsheetString=("RunningTotalSlow" "Rate")
+declare -a rows=("10" "20")
+declare -a runs=("1" "2")
 
 for run in "${runs[@]}"
 do
@@ -28,10 +34,13 @@ do
 	do
 		for j in "${!spreadsheetString[@]}"
 		do
+			now="$(date)"
+			msg="| $now | Run = ${run} | Dependency Table Class = ${depTableClassString[$i]} | Spreadsheet Name = ${spreadsheetString[$j]} |"
+			div="$(head -c ${#msg} < /dev/zero | tr '\0' '\053')"
+			printf "\n${div}\n${msg}\n${div}\n"
 			OUT_FOLDER=$REPORT_HOME/${depTableClassString[$i]}/${spreadsheetString[$j]}/RUN${run}
 			mkdir -p $OUT_FOLDER
 			rm -f $OUT_FOLDER/*
-
 			$JAVA_CMD $JAVA_CONFIG \
 				-Durl=jdbc:postgresql://fcomp-db:5432/dataspread_db \
 				-DdbDriver=org.postgresql.Driver \
@@ -47,9 +56,8 @@ do
 				-classpath $CLASSPATH \
 				$TEST_MAIN \
 				$COMMON_CONFIG
-
 			now="$(date)"
-			echo "$now: Finished testing ${spreadsheetString[$j]} for ${depTableClassString[$i]}"
+			echo "$now: Finished testing ${spreadsheetString[$j]} for ${depTableClassString[$i]} (run ${run})"
 		done
 	done
 done
