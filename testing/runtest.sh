@@ -45,7 +45,7 @@ do
 				msg="| $now | Rows = ${rows[$k]} | Run = ${run} | Dependency Table Class = ${depTableClassString[$i]} | Spreadsheet Name = ${spreadsheetString[$j]} |"
 				div="$(head -c ${#msg} < /dev/zero | tr '\0' '\053')"
 				printf "\n${div}\n${msg}\n${div}\n"
-				OUT_FOLDER=$REPORT_HOME/${depTableClassString[$i]}/${spreadsheetString[$j]}/RUN${run}
+				OUT_FOLDER=$REPORT_HOME/${depTableClassString[$i]}/${spreadsheetString[$j]}/RUN-${run}/ROWS-${rows[$k]}
 				mkdir -p $OUT_FOLDER
 				rm -f $OUT_FOLDER/*
 				$JAVA_CMD $JAVA_CONFIG \
