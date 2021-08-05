@@ -18,9 +18,9 @@ declare -a spreadsheetString=("RunningTotalFast" "Rate")
 declare -a rows=("100000" "200000" "300000" "400000" "500000")
 declare -a runs=("1" "2" "3")
 
-# declare -a depTableClassString=("PGImpl")
+# declare -a depTableClassString=("PGImpl" "Comp")
 # declare -a spreadsheetString=("RunningTotalFast")
-# declare -a rows=("100000")
+# declare -a rows=("10" "20" "30")
 # declare -a runs=("1")
 
 # declare -a depTableClassString=("PGImpl" "Comp" "Async")
@@ -39,28 +39,31 @@ do
 	do
 		for j in "${!spreadsheetString[@]}"
 		do
-			now="$(date)"
-			msg="| $now | Rows = ${rows[$j]} | Run = ${run} | Dependency Table Class = ${depTableClassString[$i]} | Spreadsheet Name = ${spreadsheetString[$j]} |"
-			div="$(head -c ${#msg} < /dev/zero | tr '\0' '\053')"
-			printf "\n${div}\n${msg}\n${div}\n"
-			OUT_FOLDER=$REPORT_HOME/${depTableClassString[$i]}/${spreadsheetString[$j]}/RUN${run}
-			mkdir -p $OUT_FOLDER
-			rm -f $OUT_FOLDER/*
-			$JAVA_CMD $JAVA_CONFIG \
-				-Durl=jdbc:postgresql://fcomp-db:5432/dataspread_db \
-				-DdbDriver=org.postgresql.Driver \
-				-Dusername=admin \
-				-Dpassword=password \
-				-DuseSyncRunner=false \
-				-DdepTableCacheSize=0 \
-				-DdepTableClassString=${depTableClassString[$i]} \
-				-DspreadsheetString=${spreadsheetString[$j]} \
-				-DnumTestArgs=1 \
-				-DtestArg.0=${rows[$j]} \
-				-DoutFolder=$OUT_FOLDER \
-				-classpath $CLASSPATH \
-				$TEST_MAIN \
-				$COMMON_CONFIG
+			for k in "${!rows[@]}"
+			do
+				now="$(date)"
+				msg="| $now | Rows = ${rows[$k]} | Run = ${run} | Dependency Table Class = ${depTableClassString[$i]} | Spreadsheet Name = ${spreadsheetString[$j]} |"
+				div="$(head -c ${#msg} < /dev/zero | tr '\0' '\053')"
+				printf "\n${div}\n${msg}\n${div}\n"
+				OUT_FOLDER=$REPORT_HOME/${depTableClassString[$i]}/${spreadsheetString[$j]}/RUN${run}
+				mkdir -p $OUT_FOLDER
+				rm -f $OUT_FOLDER/*
+				$JAVA_CMD $JAVA_CONFIG \
+					-Durl=jdbc:postgresql://fcomp-db:5432/dataspread_db \
+					-DdbDriver=org.postgresql.Driver \
+					-Dusername=admin \
+					-Dpassword=password \
+					-DuseSyncRunner=false \
+					-DdepTableCacheSize=0 \
+					-DdepTableClassString=${depTableClassString[$i]} \
+					-DspreadsheetString=${spreadsheetString[$j]} \
+					-DnumTestArgs=1 \
+					-DtestArg.0=${rows[$k]} \
+					-DoutFolder=$OUT_FOLDER \
+					-classpath $CLASSPATH \
+					$TEST_MAIN \
+					$COMMON_CONFIG
+			done
 		done
 	done
 done
