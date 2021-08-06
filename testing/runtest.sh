@@ -15,7 +15,7 @@ CLASSPATH=$DATASPREAD_HOME/testcode/target/classes:$MAVEN_HOME/repository/org/ap
 
 declare -a depTableClassString=("PGImpl" "Comp" "Async")
 declare -a spreadsheetString=("RunningTotalFast" "Rate")
-declare -a rows=("100000" "200000" "300000" "400000" "500000")
+declare -a rows=("500000" "400000" "300000" "200000" "100000")
 declare -a runs=("1" "2" "3")
 
 # declare -a depTableClassString=("PGImpl" "Comp")
