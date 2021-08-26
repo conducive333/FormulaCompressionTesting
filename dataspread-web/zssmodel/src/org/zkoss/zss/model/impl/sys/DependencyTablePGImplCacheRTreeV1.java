@@ -25,7 +25,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.*;
 
-public class DependencyTablePGImplCacheRTree extends DependencyTableAdv {
+public class DependencyTablePGImplCacheRTreeV1 extends DependencyTableAdv {
 
     private static final long serialVersionUID = 1L;
     private static final Log _logger = Log.lookup(DependencyTablePGImpl.class.getName());
@@ -55,7 +55,7 @@ public class DependencyTablePGImplCacheRTree extends DependencyTableAdv {
     private final Cache<Rectangle, Set<Ref>> depToPrcCache = CacheBuilder.newBuilder().maximumSize(CACHE_SIZE).removalListener(depToPrcListener).build();
     private final Cache<Rectangle, Set<Ref>> prcToDepCache = CacheBuilder.newBuilder().maximumSize(CACHE_SIZE).removalListener(prcToDepListener).build();
 
-    public DependencyTablePGImplCacheRTree() {
+    public DependencyTablePGImplCacheRTreeV1() {
         lastLookupTime = 0;
     }
 

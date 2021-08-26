@@ -89,6 +89,9 @@ public class CompressionTestMain {
             case "pgimpl":
                 EngineFactory.dependencyTableClazz = DependencyTablePGImpl.class;
                 break;
+            case "rtree":
+                EngineFactory.dependencyTableClazz = DependencyTablePGImplCacheRTreeV2.class;
+                break;
             case "comp":
                 EngineFactory.dependencyTableClazz = DependencyTableComp.class;
                 break;
