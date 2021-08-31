@@ -7,7 +7,7 @@ MAVEN_HOME=/home/cdeleon/.m2
 DATASPREAD_HOME=/home/cdeleon/FormulaCompressionTesting/dataspread-web
 
 TEST_HOME=/home/cdeleon/FormulaCompressionTesting/testing
-REPORT_HOME=$TEST_HOME/reports/rq1/async/IN_MEM
+REPORT_HOME=$TEST_HOME/reports/rq1/sync/IN_MEM
 COMMON_CONFIG=$TEST_HOME/commonConfig.properties
 TEST_MAIN=FormulaCompressionTest.CompressionTestMain
 
@@ -19,7 +19,7 @@ CLASSPATH=$DATASPREAD_HOME/testcode/target/classes:$MAVEN_HOME/repository/org/ap
 #declare -a runs=("1" "2" "3")
 
 declare -a depTableClassString=("Async")
-declare -a spreadsheetString=("RunningTotalFast")
+declare -a spreadsheetString=("Rate")
 declare -a rows=("5000" "10000" "15000" "20000" "25000")
 declare -a runs=("1" "2" "3")
 
@@ -58,7 +58,7 @@ do
 					-DdbDriver=org.postgresql.Driver \
 					-Dusername=admin \
 					-Dpassword=password \
-					-DuseSyncRunner=false \
+					-DuseSyncRunner=true \
 					-DdepTableCacheSize=1000000000 \
 					-DdepTableClassString=${depTableClassString[$i]} \
 					-DspreadsheetString=${spreadsheetString[$j]} \
