@@ -18,7 +18,7 @@ CLASSPATH=$DATASPREAD_HOME/testcode/target/classes:$MAVEN_HOME/repository/org/ap
 #declare -a rows=("5000" "10000" "15000" "20000" "25000")
 #declare -a runs=("1" "2" "3")
 
-declare -a depTableClassString=("Async")
+declare -a depTableClassString=("Comp")
 declare -a spreadsheetString=("Rate")
 declare -a rows=("5000" "10000" "15000" "20000" "25000")
 declare -a runs=("1" "2" "3")
