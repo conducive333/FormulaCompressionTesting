@@ -7,7 +7,7 @@ MAVEN_HOME=/home/cdeleon/.m2
 DATASPREAD_HOME=/home/cdeleon/FormulaCompressionTesting/dataspread-web
 
 TEST_HOME=/home/cdeleon/FormulaCompressionTesting/testing
-REPORT_HOME=$TEST_HOME/reports/rq1/async/IN_MEM
+REPORT_HOME=$TEST_HOME/reports/rq1/async/DB
 COMMON_CONFIG=$TEST_HOME/commonConfig.properties
 TEST_MAIN=FormulaCompressionTest.CompressionTestMain
 
@@ -15,7 +15,7 @@ CLASSPATH=$DATASPREAD_HOME/testcode/target/classes:$MAVEN_HOME/repository/org/ap
 
 declare -a depTableClassString=("PGImpl")
 declare -a spreadsheetString=("Rate")
-declare -a rows=("500000")
+declare -a rows=("100000")
 declare -a runs=("1" "2" "3")
 
 # declare -a depTableClassString=("PGImpl")
@@ -55,7 +55,7 @@ do
 					-Dpassword=password \
 					-DuseSyncRunner=false \
 					-DskipExecution=true \
-					-DdepTableCacheSize=1000000000 \
+					-DdepTableCacheSize=0 \
 					-DdepTableClassString=${depTableClassString[$i]} \
 					-DspreadsheetString=${spreadsheetString[$j]} \
 					-DnumTestArgs=1 \
