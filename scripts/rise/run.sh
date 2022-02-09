@@ -11,5 +11,6 @@ docker run \
 	--user $uid:$uid \
 	--mount type=bind,src="$(pwd)"/.m2,dst=/home/cdeleon/.m2 \
 	--mount type=bind,src="$(pwd)"/testing,dst=/home/cdeleon/FormulaCompressionTesting/testing \
+	--mount type=bind,src="$(pwd)"/sheets,dst=/home/cdeleon/FormulaCompressionTesting/testing/sheets \
 	--mount type=bind,src="$(pwd)"/dataspread-web,dst=/home/cdeleon/FormulaCompressionTesting/dataspread-web \
 	-it fcomp-rise

@@ -1,2 +1,4 @@
+outputs/**/*
 export.sh
 update.sh
+analysis

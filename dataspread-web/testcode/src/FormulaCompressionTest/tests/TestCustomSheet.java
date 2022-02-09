@@ -1,9 +1,10 @@
 package FormulaCompressionTest.tests;
 
-import FormulaCompressionTest.utils.Util;
-import org.zkoss.zss.model.sys.dependency.Ref;
+        import FormulaCompressionTest.utils.Util;
+        import org.zkoss.zss.model.sys.dependency.Ref;
 
-import java.nio.file.Path;
+        import java.io.File;
+        import java.nio.file.Path;
 
 /**
  * An example of how to import your own excel file for testing.
@@ -29,30 +30,49 @@ import java.nio.file.Path;
 public class TestCustomSheet extends BaseTest {
 
     private Path path;
+    private int rowIndex;
+    private int colIndex;
+    private String updatedCell;
 
-    public TestCustomSheet(final Path path) {
+    public TestCustomSheet(final Path path, String cell) {
         super(Util.importBook(path));
         this.path = path;
+
+        this.updatedCell = cell;
+        colIndex = cell.charAt(0) - 'A';
+        rowIndex = Integer.parseInt(cell.substring(1)) - 1;
+    }
+
+    public String getFileName() {
+        return path.getFileName().toString();
+    }
+
+    public String getUpdatedCell() {
+        return updatedCell;
     }
 
     @Override
     public void init() {
+        sheet.setDelayComputation(true);
+        loadBatch();
+        refreshDepTable();
         sheet.setDelayComputation(false);
     }
 
     @Override
     public boolean verify() {
-        return Double.compare((double) sheet.getCell(9, 0).getValue(), 55.0) == 0;
+        // return Double.compare((double) sheet.getCell(9, 0).getValue(), 55.0) == 0;
+        return true;
     }
 
     @Override
     public Ref getCellToUpdate() {
-        return sheet.getCell(0, 0).getRef();
+        return sheet.getCell(rowIndex, colIndex).getRef();
     }
 
     @Override
     public void updateCell() {
-        sheet.getCell(0, 0).setValue(10);
+        sheet.getCell(rowIndex, colIndex).setValue(10);
     }
 
     @Override
@@ -66,3 +86,4 @@ public class TestCustomSheet extends BaseTest {
         }
     }
 }
+
