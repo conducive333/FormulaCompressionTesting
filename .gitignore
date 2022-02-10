@@ -1,4 +1,4 @@
-dataspread-web.jar
+testing/dataspread-web.jar
 outputs/**/*
 export.sh
 update.sh
