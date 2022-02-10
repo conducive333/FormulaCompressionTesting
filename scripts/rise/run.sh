@@ -9,8 +9,7 @@ docker run \
 	--net dataspread \
 	--name $1 \
 	--user $uid:$uid \
-	--mount type=bind,src="$(pwd)"/.m2,dst=/home/cdeleon/.m2 \
 	--mount type=bind,src="$(pwd)"/testing,dst=/home/cdeleon/FormulaCompressionTesting/testing \
 	--mount type=bind,src="$(pwd)"/sheets,dst=/home/cdeleon/FormulaCompressionTesting/testing/sheets \
-	--mount type=bind,src="$(pwd)"/dataspread-web,dst=/home/cdeleon/FormulaCompressionTesting/dataspread-web \
+	--mount type=bind,src="$(pwd)"/testing/dataspread-web.jar,dst=/home/cdeleon/FormulaCompressionTesting/testing/dataspread-web.jar \
 	-it fcomp-rise
