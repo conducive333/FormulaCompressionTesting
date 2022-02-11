@@ -1,10 +1,18 @@
 #!/bin/bash
 
+# If using a local database, you may find 
+# the following queries useful for testing:
+#
+# 	set enable_hashjoin to off;
+# 	set enable_mergejoin to off;
+# 	show all;
+#
 cd "$(dirname "$0")"
 
 # You'll need to export a jar of the testing 
 # framework and add it to the current directory
 # in order to use this script.
+#
 JAVA_HOME='C:/Java/jdk-17.0.2'
 JAVA_CMD="$JAVA_HOME/bin/java"
 TEST_HOME='C:/Users/cdian/Desktop/Research/DataSpread/formula-comp/FormulaCompressionTesting/testing'
@@ -17,14 +25,14 @@ declare -a depTableClassString=("comp")
 declare -a modes=("mem")
 declare -a runs=("1" "2" "3")
 declare -A updateMap
-updateMap['enron_long1.xls']='F2'
+# updateMap['enron_long1.xls']='F2'
 # updateMap['enron_long2.xls']='A6'
 # updateMap['enron_long3.xls']='I7'
-# updateMap['enron_max1.xls']='Z1'
-# updateMap['enron_max2.xls']='J5'
-# updateMap['enron_max3.xls']='J5'
-# updateMap['enron_max4.xls']='D4'
-# updateMap['enron_max5.xls']='B42'
+updateMap['enron_max1.xls']='Z1'
+updateMap['enron_max2.xls']='J5'
+updateMap['enron_max3.xls']='J5'
+updateMap['enron_max4.xls']='D4'
+updateMap['enron_max5.xls']='B42'
 # updateMap['github_long1.xlsx']='B2'
 # updateMap['github_long2.xlsx']='A8'
 # updateMap['github_long3.xlsx']='A2'
@@ -43,7 +51,7 @@ do
 			for j in "${!modes[@]}"
 			do
 				now="$(date)"
-				msg="| $now | Workbook = ${workbook} | Run = ${run} | Dependency Table Class = ${depTableClassString[$i]} | MODE = ${modes[$j]}"
+				msg="| $now | Workbook = ${workbook} | Run = ${run} | Dependency Table Class = ${depTableClassString[$i]} | MODE = ${modes[$j]} |"
 				div="$(head -c ${#msg} < /dev/zero | tr '\0' '\053')"
 				[ ${modes[$j]} = 'mem' ] && mem='true' || mem='false'
 				printf "\n${div}\n${msg}\n${div}\n"
@@ -52,7 +60,7 @@ do
 				rm -f $OUT_FOLDER/*
 				timeout 60m $JAVA_CMD \
           -Xss4m \
-					-Durl=jdbc:postgresql://localhost:5432/dataspread \
+					-Durl=jdbc:postgresql://localhost:5433/dataspread \
 					-DdbDriver=org.postgresql.Driver \
 					-Dusername=dataspreaduser \
 					-Dpassword=password \

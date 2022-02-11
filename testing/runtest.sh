@@ -43,7 +43,7 @@ do
 			for j in "${!modes[@]}"
 			do
 				now="$(date)"
-				msg="| $now | Workbook = ${workbook} | Run = ${run} | Dependency Table Class = ${depTableClassString[$i]} | MODE = ${modes[$j]}"
+				msg="| $now | Workbook = ${workbook} | Run = ${run} | Dependency Table Class = ${depTableClassString[$i]} | MODE = ${modes[$j]} |"
 				div="$(head -c ${#msg} < /dev/zero | tr '\0' '\053')"
 				[ ${modes[$j]} = 'mem' ] && mem='true' || mem='false'
 				printf "\n${div}\n${msg}\n${div}\n"
